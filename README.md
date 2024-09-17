@@ -68,3 +68,6 @@ O dataset contém as seguintes colunas:
 - **Pandas** para o processamento de dados.
 - **Streamlit** para visualização de dados interativa.
 - **Jupyter Notebook** para experimentação e desenvolvimento.
+
+## Dashboard da Análise
+[Streamlit](https://d4thjrkuuwd3mvy56lcnxq.streamlit.app/).
