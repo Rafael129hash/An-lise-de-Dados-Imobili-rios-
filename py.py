@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
 
 # Carregar o arquivo CSV
 df = pd.read_csv('Furniture.csv')
@@ -15,33 +14,22 @@ st.dataframe(df.head())
 # Título da aplicação
 st.title("Distribuição das Vendas e Margens de Lucro")
 
-# Função para criar histogramas personalizados com Streamlit e Matplotlib
+# Função para criar histogramas personalizados com Streamlit e Pandas
 def plot_histogram(data, column, title, color):
     st.subheader(title)
-    plt.figure(figsize=(10, 5))
-    plt.hist(data[column].dropna(), bins=20, color=color, edgecolor='black')
-    plt.xlabel(column)
-    plt.ylabel('Frequência')
-    plt.title(title)
-    st.pyplot(plt)
-    plt.close()  # Fechar a figura para liberar memória
+    hist_data = data[column].dropna().value_counts(bins=10).sort_index()
+    st.bar_chart(hist_data, use_container_width=True)
 
 # Configuração das colunas para exibição lado a lado
 col1, col2 = st.columns(2)
 
-# Plotando o histograma de vendas na primeira coluna com cores azuladas
+# Plotando o histograma de vendas na primeira coluna
 with col1:
     plot_histogram(df, 'sales', 'Distribuição das Vendas', 'skyblue')
 
-# Plotando o histograma de margens de lucro na segunda coluna com cores avermelhadas
+# Plotando o histograma de margens de lucro na segunda coluna
 with col2:
     plot_histogram(df, 'profit_margin', 'Distribuição das Margens de Lucro', 'salmon')
-
-
-
-
-
-
 
 
 
